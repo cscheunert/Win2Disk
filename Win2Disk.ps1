@@ -24,7 +24,6 @@ $ImageFile = $ImageFile -replace('"','')	# the quotation marks break Get-ChildIt
 }
 
 if(!$Disknumber){
-	# External hard disk media
 $DiskList = Get-WmiObject Win32_DiskDrive -Property * -Filter "MediaType = 'Fixed hard disk media' OR MediaType = 'External hard disk media'" | Select-Object Index,Model,@{Name="Size (GB)";Expression={[math]::truncate($_.Size/1GB)}} | Sort-Object Index 
 $DiskOut = $DiskList | Out-String
 $DiskChoice = $DiskList.Index | Out-String
